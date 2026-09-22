@@ -59,4 +59,13 @@ public class GameManager : NetworkBehaviour //pour un network object
     {
         NetworkManager.Singleton.StartClient(); // Fonction du NetworkManager pour démarrer une partie comme client
     }
+
+    // Fonction appelée par le bouton Recommencer pour recommencer une partie
+    public void Recommencer()
+    {
+        NetworkManager.Singleton.Shutdown(); // On arrête le NetworkManager pour réinitialiser la partie
+        Destroy(NetworkManager.gameObject);
+        partieEnCours = false; // On remet la partie en cours à false
+        SceneManager.LoadScene(0);// On recharge la scène de jeu
+    }
 }
